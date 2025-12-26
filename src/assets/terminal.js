@@ -40,11 +40,13 @@
       const text = row.dataset.command || row.querySelector(".command")?.textContent?.trim();
       const label = row.dataset.label || link?.textContent?.trim() || text;
       const href = row.dataset.href || link?.getAttribute("href");
+      const url = row.dataset.url || link?.getAttribute("href") || href;
       if (!text || !href) return null;
       return {
         text,
         label,
-        href
+        href,
+        url
       };
     })
     .filter(Boolean);
@@ -64,7 +66,31 @@
   const maxHistoryLines = 40;
   let dynamicMaxLines = maxHistoryLines;
   const pageCache = new Map();
-  let currentPath = normalizePath(window.location.pathname);
+  const inferPathPrefix = () => {
+    const pathname = normalizePath(window.location.pathname);
+    for (const command of commands) {
+      const raw = normalizePath(command.href);
+      if (pathname === raw) return "";
+      if (pathname.endsWith(raw)) {
+        const prefix = pathname.slice(0, pathname.length - raw.length);
+        return normalizePath(prefix || "/");
+      }
+    }
+    return "";
+  };
+
+  const pathPrefix = inferPathPrefix();
+  const stripPrefix = (path) => {
+    const normalized = normalizePath(path);
+    if (!pathPrefix || pathPrefix === "/") return normalized;
+    if (normalized.startsWith(pathPrefix)) {
+      const stripped = normalized.slice(pathPrefix.length);
+      return normalizePath(stripped || "/");
+    }
+    return normalized;
+  };
+
+  let currentPath = stripPrefix(window.location.pathname);
 
   const loadSession = () => {
     try {
@@ -276,7 +302,7 @@
       if (push) {
         history.pushState({ href: targetUrl.href }, "", targetUrl.href);
       }
-      setActiveCommand(targetUrl.pathname);
+      setActiveCommand(stripPrefix(targetUrl.pathname));
 
       if (targetUrl.hash) {
         const targetId = targetUrl.hash.slice(1);
@@ -467,7 +493,7 @@
       input.value = "";
       renderSuggestions(commands);
       setTimeout(() => {
-        loadPage(command.href, { push: true });
+        loadPage(command.url || command.href, { push: true });
       }, 200);
       return;
     }
@@ -629,8 +655,10 @@
   commandList?.addEventListener("click", (event) => {
     const link = event.target.closest("a");
     if (!link) return;
-    const href = link.getAttribute("href");
-    if (!href) return;
+    const row = link.closest(".tree-item");
+    const href = row?.dataset.href || link.getAttribute("href");
+    const url = row?.dataset.url || link.getAttribute("href") || href;
+    if (!href || !url) return;
     event.preventDefault();
     const command = commands.find(
       (item) => normalizePath(item.href) === normalizePath(href)
@@ -639,7 +667,7 @@
       executeCommand(command.text, command);
       return;
     }
-    loadPage(href, { push: true });
+    loadPage(url, { push: true });
   });
 
   window.addEventListener("popstate", (event) => {

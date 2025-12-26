@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{{ title }} | {{ site.name }}</title>
     <meta name="description" content="{{ description or site.description }}" />
-    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="{{ '/assets/style.css' | url }}" />
   </head>
   <body>
     <div class="page">
       <header class="site-header">
         <div class="site-id">
           <span class="prompt">$</span>
-          <a class="site-identifier" href="/">lukasheidegger@theinternet</a>
+          <a class="site-identifier" href="{{ '/' | url }}">lukasheidegger@theinternet</a>
           <span class="site-tagline">
             <span class="site-tagline-strong">Hi and welcome.</span>
             <span class="site-tagline-body">{{ site.tagline }}</span>
@@ -84,16 +84,17 @@
                   data-command="{{ entry.text }}"
                   data-label="{{ entry.label }}"
                   data-href="{{ entry.href }}"
+                  data-url="{{ entry.href | url }}"
                 >
                   <span class="tree-branch">{% if loop.last %}└──{% else %}├──{% endif %}</span>
                   <a
                     class="tree-link"
-                    href="{{ entry.href }}"
+                    href="{{ entry.href | url }}"
                     {% if isActive %}aria-current="page"{% endif %}
                   >
                     {{ entry.label | lower }}
                   </a>
-                  <a class="tree-path" href="{{ entry.href }}">{{ entry.href }}</a>
+                  <a class="tree-path" href="{{ entry.href | url }}">{{ entry.href }}</a>
                 </li>
                 {% if entry.childrenDisplay.length %}
                   <li class="tree-children-row">
@@ -105,16 +106,17 @@
                           data-command="{{ child.text }}"
                           data-label="{{ child.label }}"
                           data-href="{{ child.href }}"
+                          data-url="{{ child.href | url }}"
                         >
                           <span class="tree-branch">{% if loop.last and not entry.hasMore %}└──{% else %}├──{% endif %}</span>
                           <a
                             class="tree-link"
-                            href="{{ child.href }}"
+                            href="{{ child.href | url }}"
                             {% if childActive %}aria-current="page"{% endif %}
                           >
                             {{ child.shortLabel | lower }}
                           </a>
-                          <a class="tree-path" href="{{ child.href }}">{{ child.href }}</a>
+                          <a class="tree-path" href="{{ child.href | url }}">{{ child.href }}</a>
                         </li>
                       {% endfor %}
                       {% if entry.hasMore %}
@@ -135,6 +137,7 @@
                 data-command="{{ command.text }}"
                 data-label="{{ command.label }}"
                 data-href="{{ command.href }}"
+                data-url="{{ command.href | url }}"
               ></li>
             {% endfor %}
           </ul>
@@ -143,6 +146,6 @@
 
     </div>
 
-    <script src="/assets/terminal.js" defer></script>
+    <script src="{{ '/assets/terminal.js' | url }}" defer></script>
   </body>
 </html>
