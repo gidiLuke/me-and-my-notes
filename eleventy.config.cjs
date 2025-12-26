@@ -1,3 +1,5 @@
+const fs = require("fs");
+
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
   eleventyConfig.setServerOptions({
@@ -13,9 +15,19 @@ module.exports = function (eleventyConfig) {
     return `/${name}/`;
   };
 
+  const hasCustomDomain = () => {
+    try {
+      const cname = fs.readFileSync("CNAME", "utf8").trim();
+      return Boolean(cname);
+    } catch (err) {
+      return false;
+    }
+  };
+
   const pathPrefix =
     process.env.ELEVENTY_PATH_PREFIX ||
     (process.env.CI_PAGES_URL ? new URL(process.env.CI_PAGES_URL).pathname : null) ||
+    (process.env.GITHUB_PAGES && hasCustomDomain() ? "/" : null) ||
     (process.env.GITHUB_PAGES ? inferGithubPrefix() : "/");
 
   eleventyConfig.addGlobalData("pathPrefix", pathPrefix);
