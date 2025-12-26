@@ -1,0 +1,13 @@
+{
+  "name": "lh",
+  "tagline": "personal site",
+  "status": "build: stable | mode: minimal",
+  "description": "Developer-centric personal website with terminal-style navigation.",
+  "footer": "(c) 2025 lh -- terminal-native, static, GitHub Pages",
+  "commands": [
+    { "text": "open about", "label": "About", "href": "/about/" },
+    { "text": "open projects", "label": "Projects", "href": "/projects/" },
+    { "text": "open now", "label": "Now", "href": "/now/" },
+    { "text": "open home", "label": "Home", "href": "/" }
+  ]
+}

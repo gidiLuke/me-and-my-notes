@@ -1,0 +1,247 @@
+:root {
+  --bg: #0f1318;
+  --bg-alt: #141a21;
+  --panel: #1a212b;
+  --text: #e6edf3;
+  --muted: #9aa4b2;
+  --accent: #6fdc8c;
+  --accent-2: #5ab1ff;
+  --danger: #f38ba8;
+  --shadow: rgba(15, 19, 24, 0.6);
+  --radius: 12px;
+  --mono: "JetBrains Mono", "Fira Code", "SFMono-Regular", "Menlo", "Consolas", monospace;
+  --sans: "Space Grotesk", "Avenir Next", "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(1200px 800px at 20% -20%, #203040 0%, transparent 60%),
+    radial-gradient(800px 600px at 90% 20%, #1c2a33 0%, transparent 55%),
+    var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  line-height: 1.6;
+}
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2.5rem clamp(1.25rem, 4vw, 4rem) 3rem;
+}
+
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.site-id {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  font-family: var(--mono);
+  font-size: 1.1rem;
+}
+
+.site-name {
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.site-tag {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.prompt {
+  color: var(--accent);
+}
+
+.status {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.content {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.panel {
+  background: var(--panel);
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  border-radius: var(--radius);
+  box-shadow: 0 18px 40px var(--shadow);
+}
+
+.panel h1 {
+  margin-top: 0;
+  font-family: var(--mono);
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+}
+
+.panel h2 {
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-top: 2rem;
+}
+
+.panel a {
+  color: var(--accent-2);
+  text-decoration: none;
+}
+
+.panel a:hover {
+  text-decoration: underline;
+}
+
+.terminal {
+  background: var(--bg-alt);
+  padding: clamp(1.2rem, 3vw, 2rem);
+  border-radius: var(--radius);
+  border: 1px solid rgba(111, 220, 140, 0.2);
+  box-shadow: 0 10px 30px var(--shadow);
+  font-family: var(--mono);
+}
+
+.terminal-header {
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 1rem;
+}
+
+.terminal-form {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.terminal-label {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.terminal-input-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(10, 14, 18, 0.6);
+  border-radius: 8px;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid rgba(154, 164, 178, 0.2);
+}
+
+#terminal-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 1rem;
+  outline: none;
+}
+
+#terminal-input.error {
+  color: var(--danger);
+}
+
+.terminal-hints {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.terminal-suggestions {
+  margin-top: 1rem;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.suggestion {
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.suggestion.active,
+.suggestion:hover {
+  background: rgba(111, 220, 140, 0.12);
+  color: var(--accent);
+}
+
+.command-list {
+  margin-top: 1.5rem;
+  border-top: 1px solid rgba(154, 164, 178, 0.2);
+  padding-top: 1rem;
+}
+
+.command-list-title {
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+}
+
+.command-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.command-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  font-size: 0.9rem;
+}
+
+.command-list .command {
+  color: var(--accent);
+  min-width: 7rem;
+}
+
+.command-list a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.command-list a:hover {
+  color: var(--accent-2);
+}
+
+.noscript {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.site-footer {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+@media (min-width: 860px) {
+  .content {
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.9fr);
+    align-items: start;
+  }
+}

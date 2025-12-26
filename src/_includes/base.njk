@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ title }} | {{ site.name }}</title>
+    <meta name="description" content="{{ description or site.description }}" />
+    <link rel="stylesheet" href="/assets/style.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="site-header">
+        <div class="site-id">
+          <span class="prompt">$</span>
+          <span class="site-name">{{ site.name }}</span>
+          <span class="site-tag">{{ site.tagline }}</span>
+        </div>
+        <div class="status">{{ site.status }}</div>
+      </header>
+
+      <main class="content" id="content">
+        <article class="panel">
+          <h1>{{ title }}</h1>
+          {{ content | safe }}
+        </article>
+
+        <section class="terminal" aria-label="Command line navigation">
+          <div class="terminal-header">Command</div>
+          <form class="terminal-form" id="terminal-form" autocomplete="off">
+            <label class="terminal-label" for="terminal-input">Type a command</label>
+            <div class="terminal-input-row">
+              <span class="prompt">$</span>
+              <input
+                id="terminal-input"
+                name="command"
+                type="text"
+                inputmode="text"
+                autocapitalize="off"
+                autocomplete="off"
+                spellcheck="false"
+                placeholder="open projects"
+                aria-describedby="terminal-hints"
+              />
+            </div>
+            <div id="terminal-hints" class="terminal-hints">
+              Tab = autocomplete | Up/Down = history (empty input) | Enter = open
+            </div>
+          </form>
+          <div class="terminal-suggestions" id="terminal-suggestions" role="listbox" aria-label="Command suggestions"></div>
+          <noscript>
+            <div class="noscript">
+              JavaScript is disabled. Use the links below to navigate between pages.
+            </div>
+          </noscript>
+          <div class="command-list">
+            <div class="command-list-title">Available commands</div>
+            <ul>
+              {% for command in site.commands %}
+                <li>
+                  <span class="command">{{ command.text }}</span>
+                  <a href="{{ command.href }}">{{ command.label }}</a>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <span>{{ site.footer }}</span>
+      </footer>
+    </div>
+
+    <script src="/assets/terminal.js" defer></script>
+  </body>
+</html>
