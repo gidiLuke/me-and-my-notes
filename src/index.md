@@ -11,7 +11,7 @@ Use the command prompt below to navigate. Examples:
 
 - `cd /about`
 - `cd /projects`
-- `cd /now`
+- `cd /blog`
 
 ## Focus
 

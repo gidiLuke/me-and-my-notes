@@ -5,9 +5,9 @@ layout: "base.njk"
 
 ## Reach me
 
-- Email: `hi@lukasjh.com`
-- Matrix: `@gidiluke:matrix.org`
-- Signal: `gidiluke.01`
+- Email: [`hi@lukasjh.com`](mailto:hi@lukasjh.com)
+- Matrix: [`@gidiluke:matrix.org`](https://matrix.to/#/@gidiluke:matrix.org)
+- Signal: [`gidiluke.01`](https://signal.me/#p/+gidiluke.01)
 
 ## PGP
 
