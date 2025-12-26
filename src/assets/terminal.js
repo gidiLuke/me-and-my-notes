@@ -66,20 +66,7 @@
   const maxHistoryLines = 40;
   let dynamicMaxLines = maxHistoryLines;
   const pageCache = new Map();
-  const inferPathPrefix = () => {
-    const pathname = normalizePath(window.location.pathname);
-    for (const command of commands) {
-      const raw = normalizePath(command.href);
-      if (pathname === raw) return "";
-      if (pathname.endsWith(raw)) {
-        const prefix = pathname.slice(0, pathname.length - raw.length);
-        return normalizePath(prefix || "/");
-      }
-    }
-    return "";
-  };
-
-  const pathPrefix = inferPathPrefix();
+  const pathPrefix = normalizePath(document.body?.dataset?.pathPrefix || "/");
   const stripPrefix = (path) => {
     const normalized = normalizePath(path);
     if (!pathPrefix || pathPrefix === "/") return normalized;
