@@ -11,7 +11,34 @@
   const commandList = document.querySelector(".command-list");
   const page = document.querySelector(".page");
   const header = document.querySelector(".site-header");
+  const toggleButton = document.getElementById("directory-toggle");
   if (!input || !suggestions || !screen || !historyView || !panel || !promptPath || !inputBlock) {
+    return;
+  }
+
+  const setHeaderHeight = () => {
+    if (!header) return;
+    const height = header.getBoundingClientRect().height || 0;
+    document.documentElement.style.setProperty("--header-height", `${height}px`);
+  };
+
+  setHeaderHeight();
+
+  const isMobile = window.matchMedia("(max-width: 1149px)").matches;
+  if (isMobile) {
+    document.body.classList.add("is-mobile", "directory-collapsed");
+  }
+
+  if (toggleButton) {
+    toggleButton.addEventListener("click", () => {
+      const collapsed = document.body.classList.toggle("directory-collapsed");
+      toggleButton.setAttribute("aria-expanded", (!collapsed).toString());
+    });
+  }
+
+  if (isMobile) {
+    input.disabled = true;
+    input.setAttribute("aria-disabled", "true");
     return;
   }
 
@@ -665,6 +692,7 @@
   window.addEventListener("resize", () => {
     setTerminalMetrics();
     updateHistoryMetrics();
+    setHeaderHeight();
   });
 
   const prefetchPages = () => {

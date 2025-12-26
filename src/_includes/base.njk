@@ -7,7 +7,7 @@
     <meta name="description" content="{{ description or site.description }}" />
     <link rel="stylesheet" href="{{ '/assets/style.css' | url }}" />
   </head>
-  <body data-path-prefix="{{ '/' | url }}">
+  <body data-path-prefix="{{ pathPrefix }}">
     <div class="page">
       <header class="site-header">
         <div class="site-id">
@@ -27,7 +27,7 @@
         </article>
 
         <section class="terminal" aria-label="Command line navigation">
-          <div class="terminal-header">Command</div>
+          <div class="terminal-header">Command Line Navigation</div>
           <div
             class="terminal-screen"
             id="terminal-screen"
@@ -69,6 +69,11 @@
             ></div>
             <div class="terminal-suggestions-hint"></div>
           </div>
+          <button class="directory-toggle" id="directory-toggle" type="button" aria-expanded="true">
+            <span class="directory-toggle-caret" aria-hidden="true">▾</span>
+            <span class="directory-toggle-label">Navigation</span>
+          </button>
+          <div class="terminal-mobile-note">Command input disabled on mobile. Check out the desktop version of this website for the full experience.</div>
           <noscript>
             <div class="noscript">
               JavaScript is disabled. Use the links below to navigate between pages.

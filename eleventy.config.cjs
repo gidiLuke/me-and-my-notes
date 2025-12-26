@@ -18,6 +18,8 @@ module.exports = function (eleventyConfig) {
     (process.env.CI_PAGES_URL ? new URL(process.env.CI_PAGES_URL).pathname : null) ||
     (process.env.GITHUB_PAGES ? inferGithubPrefix() : "/");
 
+  eleventyConfig.addGlobalData("pathPrefix", pathPrefix);
+
   return {
     dir: {
       input: "src",
