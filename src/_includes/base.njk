@@ -12,10 +12,12 @@
       <header class="site-header">
         <div class="site-id">
           <span class="prompt">$</span>
-          <span class="site-name">{{ site.name }}</span>
-          <span class="site-tag">{{ site.tagline }}</span>
+          <a class="site-identifier" href="/">lukasheidegger@theinternet</a>
+          <span class="site-tagline">
+            <span class="site-tagline-strong">Hi and welcome.</span>
+            <span class="site-tagline-body">{{ site.tagline }}</span>
+          </span>
         </div>
-        <div class="status">{{ site.status }}</div>
       </header>
 
       <main class="content" id="content">
@@ -26,49 +28,119 @@
 
         <section class="terminal" aria-label="Command line navigation">
           <div class="terminal-header">Command</div>
-          <form class="terminal-form" id="terminal-form" autocomplete="off">
-            <label class="terminal-label" for="terminal-input">Type a command</label>
-            <div class="terminal-input-row">
-              <span class="prompt">$</span>
-              <input
-                id="terminal-input"
-                name="command"
-                type="text"
-                inputmode="text"
-                autocapitalize="off"
-                autocomplete="off"
-                spellcheck="false"
-                placeholder="open projects"
-                aria-describedby="terminal-hints"
-              />
+          <div
+            class="terminal-screen"
+            id="terminal-screen"
+            role="log"
+            aria-live="polite"
+            aria-relevant="additions"
+          >
+            <div class="terminal-history" id="terminal-history">
+              <div class="terminal-line terminal-line--system">
+                boot: ready | try "cd /projects" or "ls".
+              </div>
             </div>
-            <div id="terminal-hints" class="terminal-hints">
-              Tab = autocomplete | Up/Down = history (empty input) | Enter = open
+            <div class="terminal-input-block" id="terminal-input-block">
+              <form class="terminal-form" id="terminal-form" autocomplete="off">
+                <div class="terminal-input-row terminal-input-row--active">
+                  <span class="prompt-path" id="prompt-path">/</span>
+                  <span class="prompt">$</span>
+                  <input
+                    id="terminal-input"
+                    name="command"
+                    type="text"
+                    inputmode="text"
+                    autocapitalize="off"
+                    autocomplete="off"
+                    spellcheck="false"
+                    placeholder="cd /projects"
+                    aria-describedby="terminal-hints"
+                  />
+                </div>
+              </form>
             </div>
-          </form>
-          <div class="terminal-suggestions" id="terminal-suggestions" role="listbox" aria-label="Command suggestions"></div>
+          </div>
+          <div class="terminal-suggestions-block">
+            <div
+              class="terminal-suggestions"
+              id="terminal-suggestions"
+              role="listbox"
+              aria-label="Command suggestions"
+            ></div>
+            <div class="terminal-suggestions-hint"></div>
+          </div>
           <noscript>
             <div class="noscript">
               JavaScript is disabled. Use the links below to navigate between pages.
             </div>
           </noscript>
           <div class="command-list">
-            <div class="command-list-title">Available commands</div>
+            <div class="command-list-title">Directory Navigation</div>
             <ul>
-              {% for command in site.commands %}
-                <li>
-                  <span class="command">{{ command.text }}</span>
-                  <a href="{{ command.href }}">{{ command.label }}</a>
+              {% for entry in nav.tree %}
+                {% set isActive = page.url == entry.href %}
+                <li
+                  class="tree-item {% if isActive %}is-active{% endif %}"
+                  data-command="{{ entry.text }}"
+                  data-label="{{ entry.label }}"
+                  data-href="{{ entry.href }}"
+                >
+                  <span class="tree-branch">{% if loop.last %}└──{% else %}├──{% endif %}</span>
+                  <a
+                    class="tree-link"
+                    href="{{ entry.href }}"
+                    {% if isActive %}aria-current="page"{% endif %}
+                  >
+                    {{ entry.label | lower }}
+                  </a>
+                  <a class="tree-path" href="{{ entry.href }}">{{ entry.href }}</a>
                 </li>
+                {% if entry.childrenDisplay.length %}
+                  <li class="tree-children-row">
+                    <ul class="tree-children">
+                      {% for child in entry.childrenDisplay %}
+                        {% set childActive = page.url == child.href %}
+                        <li
+                          class="tree-item tree-item--child {% if childActive %}is-active{% endif %}"
+                          data-command="{{ child.text }}"
+                          data-label="{{ child.label }}"
+                          data-href="{{ child.href }}"
+                        >
+                          <span class="tree-branch">{% if loop.last and not entry.hasMore %}└──{% else %}├──{% endif %}</span>
+                          <a
+                            class="tree-link"
+                            href="{{ child.href }}"
+                            {% if childActive %}aria-current="page"{% endif %}
+                          >
+                            {{ child.shortLabel | lower }}
+                          </a>
+                          <a class="tree-path" href="{{ child.href }}">{{ child.href }}</a>
+                        </li>
+                      {% endfor %}
+                      {% if entry.hasMore %}
+                        <li class="tree-item tree-item--ellipsis">
+                          <span class="tree-branch">├──</span>
+                          <span class="tree-ellipsis">...</span>
+                        </li>
+                      {% endif %}
+                    </ul>
+                  </li>
+                {% endif %}
               {% endfor %}
             </ul>
           </div>
+          <ul class="command-data" id="command-data" hidden>
+            {% for command in site.commands %}
+              <li
+                data-command="{{ command.text }}"
+                data-label="{{ command.label }}"
+                data-href="{{ command.href }}"
+              ></li>
+            {% endfor %}
+          </ul>
         </section>
       </main>
 
-      <footer class="site-footer">
-        <span>{{ site.footer }}</span>
-      </footer>
     </div>
 
     <script src="/assets/terminal.js" defer></script>

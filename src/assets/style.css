@@ -32,7 +32,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  padding: 2.5rem clamp(1.25rem, 4vw, 4rem) 3rem;
+  padding: 6.5rem clamp(1.25rem, 4vw, 4rem) 3rem;
 }
 
 .site-header {
@@ -41,6 +41,15 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  padding: 1.25rem clamp(1.25rem, 4vw, 4rem);
+  background: rgba(15, 19, 24, 0.96);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 10px 30px rgba(15, 19, 24, 0.5);
 }
 
 .site-id {
@@ -49,6 +58,17 @@ body {
   gap: 0.75rem;
   font-family: var(--mono);
   font-size: 1.1rem;
+  width: 100%;
+}
+
+.site-identifier {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.site-identifier:hover {
+  color: var(--accent-2);
 }
 
 .site-name {
@@ -59,6 +79,21 @@ body {
 .site-tag {
   color: var(--muted);
   font-size: 0.85rem;
+}
+
+.site-tagline {
+  color: var(--muted);
+  font-size: 0.95rem;
+  max-width: none;
+}
+
+.site-tagline-strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.site-tagline-body {
+  display: block;
 }
 
 .prompt {
@@ -82,6 +117,11 @@ body {
   padding: clamp(1.5rem, 3vw, 2.5rem);
   border-radius: var(--radius);
   box-shadow: 0 18px 40px var(--shadow);
+  transition: opacity 160ms ease;
+}
+
+.panel.is-loading {
+  opacity: 0.6;
 }
 
 .panel h1 {
@@ -114,6 +154,11 @@ body {
   border: 1px solid rgba(111, 220, 140, 0.2);
   box-shadow: 0 10px 30px var(--shadow);
   font-family: var(--mono);
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0.35rem;
+  max-height: var(--terminal-max-height, 70vh);
+  height: var(--terminal-max-height, 70vh);
 }
 
 .terminal-header {
@@ -124,24 +169,83 @@ body {
   margin-bottom: 1rem;
 }
 
-.terminal-form {
+.terminal-screen {
+  background: rgba(8, 11, 15, 0.9);
+  border-radius: 10px;
+  border: 1px solid rgba(154, 164, 178, 0.2);
+  padding: 0.9rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-height: 0;
+  height: 100%;
+  max-height: none;
+  overflow: hidden;
+  box-shadow: inset 0 0 18px rgba(0, 0, 0, 0.35);
+}
+
+.terminal-history {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 0.4rem;
+  flex: 1 1 auto;
+  overflow: hidden;
+}
+
+.terminal-input-block {
+  margin-top: auto;
   display: grid;
   gap: 0.5rem;
 }
 
-.terminal-label {
-  font-size: 0.85rem;
+.terminal-line {
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+.terminal-line--system {
   color: var(--muted);
+}
+
+.terminal-line--output {
+  color: #cde6ff;
+}
+
+.terminal-line--error {
+  color: var(--danger);
+}
+
+.terminal-form {
+  display: grid;
+  gap: 0.5rem;
+  align-self: start;
+  width: 100%;
 }
 
 .terminal-input-row {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  background: rgba(10, 14, 18, 0.6);
-  border-radius: 8px;
-  padding: 0.6rem 0.8rem;
-  border: 1px solid rgba(154, 164, 178, 0.2);
+  background: transparent;
+  border-radius: 6px;
+  padding: 0 0.5rem;
+  border: 1px solid transparent;
+  height: 2.75rem;
+  min-height: 2.75rem;
+  width: 100%;
+}
+
+.terminal-input-row--active {
+  border-color: rgba(111, 220, 140, 0.25);
+  box-shadow: inset 0 0 0 1px rgba(111, 220, 140, 0.12);
+}
+
+.prompt-path {
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  white-space: nowrap;
 }
 
 #terminal-input {
@@ -152,6 +256,7 @@ body {
   font-family: var(--mono);
   font-size: 1rem;
   outline: none;
+  line-height: 1.2;
 }
 
 #terminal-input.error {
@@ -163,10 +268,32 @@ body {
   color: var(--muted);
 }
 
+.terminal-suggestions-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 0;
+  gap: 0.35rem;
+  height: 100%;
+}
+
 .terminal-suggestions {
-  margin-top: 1rem;
   display: grid;
   gap: 0.4rem;
+  overflow: auto;
+  min-height: 0;
+  padding: 0;
+  flex: 1 1 auto;
+  max-height: none;
+  align-content: start;
+}
+
+.terminal-suggestions-hint {
+  font-size: 0.75rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  flex: 0 0 auto;
 }
 
 .suggestion {
@@ -185,9 +312,9 @@ body {
 }
 
 .command-list {
-  margin-top: 1.5rem;
   border-top: 1px solid rgba(154, 164, 178, 0.2);
-  padding-top: 1rem;
+  padding-top: 0.8rem;
+  min-height: 220px;
 }
 
 .command-list-title {
@@ -206,24 +333,72 @@ body {
   gap: 0.35rem;
 }
 
-.command-list li {
+.tree-item {
   display: flex;
-  align-items: baseline;
-  gap: 1rem;
+  align-items: center;
+  gap: 0.6rem;
   font-size: 0.9rem;
 }
 
-.command-list .command {
+.tree-item.is-active .tree-link {
   color: var(--accent);
-  min-width: 7rem;
+  text-shadow: 0 0 12px rgba(111, 220, 140, 0.5);
 }
 
-.command-list a {
+.tree-item.is-parent .tree-link {
+  color: var(--accent-2);
+}
+
+.tree-children-row {
+  padding-left: 1.8rem;
+}
+
+.tree-children {
+  list-style: none;
+  padding: 0;
+  margin: 0.2rem 0 0.4rem;
+  display: grid;
+  gap: 0.3rem;
+}
+
+.tree-item--child .tree-branch {
+  opacity: 0.8;
+}
+
+.tree-item--ellipsis {
+  color: var(--muted);
+  font-family: var(--mono);
+}
+
+.tree-ellipsis {
+  font-family: var(--mono);
+}
+
+.tree-branch {
+  color: var(--muted);
+  font-family: var(--mono);
+  min-width: 2.4rem;
+}
+
+.tree-link {
   color: var(--text);
+  text-decoration: none;
+  font-family: var(--mono);
+}
+
+.tree-link:hover {
+  color: var(--accent-2);
+}
+
+.tree-path {
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-family: var(--mono);
   text-decoration: none;
 }
 
-.command-list a:hover {
+.tree-path:hover {
   color: var(--accent-2);
 }
 
@@ -237,11 +412,24 @@ body {
   font-family: var(--mono);
   font-size: 0.8rem;
   color: var(--muted);
+  text-align: center;
 }
 
 @media (min-width: 860px) {
   .content {
-    grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.9fr);
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr);
     align-items: start;
+  }
+
+  .terminal {
+    order: 1;
+    position: sticky;
+    top: var(--terminal-offset-top, 2rem);
+    max-height: var(--terminal-max-height, calc(100vh - 4rem));
+    height: var(--terminal-max-height, calc(100vh - 4rem));
+  }
+
+  .panel {
+    order: 2;
   }
 }

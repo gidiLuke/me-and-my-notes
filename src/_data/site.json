@@ -1,13 +1,26 @@
 {
-  "name": "lh",
-  "tagline": "personal site",
-  "status": "build: stable | mode: minimal",
-  "description": "Developer-centric personal website with terminal-style navigation.",
-  "footer": "(c) 2025 lh -- terminal-native, static, GitHub Pages",
+  "name": "Lukas Heidegger",
+  "tagline": "This is my personal space on the internet. Check out what I do, what I think about, how you can hire me for projects, and a few nerdy gimmicks.",
+  "description": "Personal site for Lukas Heidegger: work, thinking, and ways to collaborate.",
+  "footer": "(c) 2026 Lukas Heidegger / Heitech digital",
   "commands": [
-    { "text": "open about", "label": "About", "href": "/about/" },
-    { "text": "open projects", "label": "Projects", "href": "/projects/" },
-    { "text": "open now", "label": "Now", "href": "/now/" },
-    { "text": "open home", "label": "Home", "href": "/" }
+    { "text": "cd /", "label": "Home", "href": "/", "topLevel": true },
+    { "text": "cd /about", "label": "About", "href": "/about/", "topLevel": true },
+    { "text": "cd /projects", "label": "Projects", "href": "/projects/", "topLevel": true },
+    { "text": "cd /now", "label": "Now", "href": "/now/", "topLevel": true },
+    { "text": "cd /heitech", "label": "Heitech Digital", "href": "/heitech/", "topLevel": true },
+    { "text": "cd /imprint", "label": "Imprint / Impressum", "href": "/imprint/", "topLevel": true },
+    {
+      "text": "cd /heitech/consulting",
+      "label": "Heitech Consulting",
+      "href": "/heitech/consulting/",
+      "topLevel": false
+    },
+    {
+      "text": "cd /heitech/approach",
+      "label": "Heitech Approach",
+      "href": "/heitech/approach/",
+      "topLevel": false
+    }
   ]
 }
