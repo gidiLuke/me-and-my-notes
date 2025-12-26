@@ -5,6 +5,7 @@
   "footer": "(c) 2026 Lukas Heidegger / Heitech digital",
   "commands": [
     { "text": "cd /", "label": "Home", "href": "/", "topLevel": true },
+    { "text": "cd /contact", "label": "Contact", "href": "/contact/", "topLevel": true },
     { "text": "cd /about", "label": "About", "href": "/about/", "topLevel": true },
     { "text": "cd /projects", "label": "Projects", "href": "/projects/", "topLevel": true },
     { "text": "cd /now", "label": "Now", "href": "/now/", "topLevel": true },

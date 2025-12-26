@@ -13,5 +13,4 @@ I build reliable, maintainable systems and keep interfaces intentional and minim
 
 ## Contact
 
-- Email: `hello@example.com`
-- GitHub: `github.com/username`
+See the dedicated contact page for the full details.
