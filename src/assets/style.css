@@ -236,7 +236,7 @@ body {
   justify-content: flex-end;
   gap: 0.4rem;
   flex: 1 1 auto;
-  overflow: hidden;
+  overflow: auto;
 }
 
 .terminal-input-block {
