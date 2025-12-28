@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ title }} | {{ site.name }}</title>
+    <meta name="description" content="{{ description or site.description }}" />
+    <link rel="stylesheet" href="{{ '/assets/style.css' | url }}" />
+    <link rel="icon" href="{{ '/assets/favicon.svg' | url }}" type="image/svg+xml" />
+  </head>
+  <body class="nav-mode-classic" data-path-prefix="{{ pathPrefix }}">
+    <div class="page">
+      <header class="site-header">
+        <div class="site-id">
+          <span class="prompt">$</span>
+          <a class="site-identifier" href="{{ '/' | url }}">lukasheidegger@theinternet</a>
+          <span class="site-tagline">
+            <span class="site-tagline-strong">Hi and welcome.</span>
+            <span class="site-tagline-body">{{ site.tagline }}</span>
+          </span>
+        </div>
+      </header>
+
+      <main class="content" id="content">
+        <article class="panel">
+          <h1>{{ title }}</h1>
+          {{ content | safe }}
+        </article>
+
+        <section class="terminal" aria-label="Command line navigation">
+          <div class="terminal-header">
+            <div class="nav-mode-toggle" id="nav-mode-toggle" role="group" aria-label="Navigation mode">
+            <span class="nav-mode-label">Navigation:</span>
+            <button
+              class="nav-mode-option"
+              type="button"
+              data-mode="classic"
+              aria-pressed="true"
+            >
+              Classic
+            </button>
+            <span class="nav-mode-separator">|</span>
+            <button
+              class="nav-mode-option"
+              type="button"
+              data-mode="command"
+              aria-pressed="false"
+            >
+              Command Line
+            </button>
+            </div>
+          </div>
+          <div
+            class="terminal-screen"
+            id="terminal-screen"
+            role="log"
+            aria-live="polite"
+            aria-relevant="additions"
+          >
+            <div class="terminal-history" id="terminal-history">
+              <div class="terminal-line terminal-line--system">
+                boot: ready | try "cd /projects" or "ls".
+              </div>
+            </div>
+            <div class="terminal-input-block" id="terminal-input-block">
+              <form class="terminal-form" id="terminal-form" autocomplete="off">
+                <div class="terminal-input-row terminal-input-row--active">
+                  <span class="prompt-path" id="prompt-path">/</span>
+                  <span class="prompt">$</span>
+                  <input
+                    id="terminal-input"
+                    name="command"
+                    type="text"
+                    inputmode="text"
+                    autocapitalize="off"
+                    autocomplete="off"
+                    spellcheck="false"
+                    placeholder="cd /projects"
+                    aria-describedby="terminal-hints"
+                  />
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="terminal-suggestions-block">
+            <div
+              class="terminal-suggestions"
+              id="terminal-suggestions"
+              role="listbox"
+              aria-label="Command suggestions"
+            ></div>
+            <div class="terminal-suggestions-hint"></div>
+          </div>
+          <noscript>
+            <div class="noscript">
+              JavaScript is disabled. Use the links below to navigate between pages.
+            </div>
+          </noscript>
+          <div class="command-list">
+            <ul>
+              {% for entry in nav.tree %}
+                {% set isActive = page.url == entry.href %}
+                <li
+                  class="tree-item {% if isActive %}is-active{% endif %}"
+                  data-command="{{ entry.text }}"
+                  data-label="{{ entry.label }}"
+                  data-href="{{ entry.href }}"
+                  data-url="{{ entry.href | url }}"
+                >
+                  <span class="tree-branch">{% if loop.last %}└──{% else %}├──{% endif %}</span>
+                  <a
+                    class="tree-link"
+                    href="{{ entry.href | url }}"
+                    {% if isActive %}aria-current="page"{% endif %}
+                  >
+                    {{ entry.label | lower }}
+                  </a>
+                  <a class="tree-path" href="{{ entry.href | url }}">{{ entry.href }}</a>
+                </li>
+                {% if entry.childrenDisplay.length %}
+                  <li class="tree-children-row">
+                    <ul class="tree-children">
+                      {% for child in entry.childrenDisplay %}
+                        {% set childActive = page.url == child.href %}
+                        <li
+                          class="tree-item tree-item--child {% if childActive %}is-active{% endif %}"
+                          data-command="{{ child.text }}"
+                          data-label="{{ child.label }}"
+                          data-href="{{ child.href }}"
+                          data-url="{{ child.href | url }}"
+                        >
+                          <span class="tree-branch">{% if loop.last and not entry.hasMore %}└──{% else %}├──{% endif %}</span>
+                          <a
+                            class="tree-link"
+                            href="{{ child.href | url }}"
+                            {% if childActive %}aria-current="page"{% endif %}
+                          >
+                            {{ child.shortLabel | lower }}
+                          </a>
+                          <a class="tree-path" href="{{ child.href | url }}">{{ child.href }}</a>
+                        </li>
+                      {% endfor %}
+                      {% if entry.hasMore %}
+                        <li class="tree-item tree-item--ellipsis">
+                          <span class="tree-branch">├──</span>
+                          <span class="tree-ellipsis">...</span>
+                        </li>
+                      {% endif %}
+                    </ul>
+                  </li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+          </div>
+          <ul class="command-data" id="command-data" hidden>
+            {% for command in site.commands %}
+              <li
+                data-command="{{ command.text }}"
+                data-label="{{ command.label }}"
+                data-href="{{ command.href }}"
+                data-url="{{ command.href | url }}"
+              ></li>
+            {% endfor %}
+          </ul>
+        </section>
+      </main>
+
+    </div>
+
+    <script src="{{ '/assets/terminal.js' | url }}" defer></script>
+  </body>
+</html>

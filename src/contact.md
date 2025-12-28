@@ -1,0 +1,74 @@
+---
+title: "Contact"
+layout: "base.njk"
+---
+
+## Reach me
+
+- Email: <a href="mailto:hi@lukasjh.com" target="_blank" rel="noopener noreferrer">hi@lukasjh.com</a>
+- Matrix: <a href="https://matrix.to/#/@gidiluke:matrix.org" target="_blank" rel="noopener noreferrer">@gidiluke:matrix.org</a>
+- Signal: <a href="https://signal.me/#p/+gidiluke.01" target="_blank" rel="noopener noreferrer">gidiluke.01</a>
+
+## PGP
+
+Fingerprint:
+
+```
+1152 5AE9 1F9F B025 E0FE  1857 4124 BD17 10D8 6D4C
+```
+
+Key:
+
+```
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+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
+=wEPv
+-----END PGP PUBLIC KEY BLOCK-----
+```
