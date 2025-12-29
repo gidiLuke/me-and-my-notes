@@ -5,9 +5,9 @@ layout: "base.njk"
 
 ## Company Details (Unternehmensangaben)
 
-Heitech e.U.
-Trins 38 
-6152 Trins
+Heitech e.U.  
+Trins 38  
+6152 Trins  
 Austria (Österreich)  
 
 ## Contact (Kontakt)
@@ -24,7 +24,7 @@ Owner (Inhaber): Lukas Heidegger
 
 ## Responsible for Content (Verantwortlich für den Inhalt nach § 55 Abs. 2 MedienG)
 
-Lukas Heidegger
-Trins 38
-6152 Trins
-Austria (Österreich)
+Lukas Heidegger  
+Trins 38  
+6152 Trins  
+Austria (Österreich)  
