@@ -1,5 +1,8 @@
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
+  eleventyConfig.addPassthroughCopy({ "src/security/pgp.asc": "security/pgp.asc" });
+  eleventyConfig.addPassthroughCopy({ "src/security/verify.txt.asc": "security/verify.txt.asc" });
+  eleventyConfig.addPassthroughCopy({ "src/.well-known": ".well-known" });
   eleventyConfig.setServerOptions({
     liveReload: false,
     domDiff: false

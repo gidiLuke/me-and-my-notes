@@ -12,6 +12,7 @@
   const page = document.querySelector(".page");
   const header = document.querySelector(".site-header");
   const modeToggle = document.getElementById("nav-mode-toggle");
+  const menuToggle = document.getElementById("mobile-nav-toggle");
   if (!input || !suggestions || !screen || !historyView || !panel || !promptPath || !inputBlock) {
     return;
   }
@@ -58,6 +59,21 @@
 
   if (isMobile) {
     applyMode("classic", false);
+    const setMenuHidden = (hidden, persist = true) => {
+      document.body.classList.toggle("nav-menu-hidden", hidden);
+      if (menuToggle) {
+        menuToggle.setAttribute("aria-expanded", hidden ? "false" : "true");
+        menuToggle.textContent = hidden ? "Show Menu ▼" : "Hide Menu ▲";
+      }
+      if (persist) {
+        sessionStorage.setItem("nav-menu-hidden", hidden ? "1" : "0");
+      }
+    };
+    const storedMenuHidden = sessionStorage.getItem("nav-menu-hidden");
+    setMenuHidden(storedMenuHidden === "1", false);
+    menuToggle?.addEventListener("click", () => {
+      setMenuHidden(!document.body.classList.contains("nav-menu-hidden"));
+    });
     return;
   }
 
@@ -117,6 +133,7 @@
   const storageKey = "terminal-session";
   const maxTranscript = 40;
   const maxHistoryLines = 40;
+  const allowHistoryScroll = true;
   let dynamicMaxLines = maxHistoryLines;
   const pageCache = new Map();
   const pathPrefix = normalizePath(document.body?.dataset?.pathPrefix || "/");
@@ -160,10 +177,26 @@
   }
 
   const scrollScreen = () => {
-    screen.scrollTop = screen.scrollHeight;
+    const target = allowHistoryScroll ? historyView : screen;
+    const lastLine = historyView.lastElementChild;
+    if (lastLine) {
+      lastLine.scrollIntoView({ block: "end" });
+      return;
+    }
+    target.scrollTop = target.scrollHeight;
+  };
+
+  const scrollToLatest = () => {
+    requestAnimationFrame(() => {
+      scrollScreen();
+    });
   };
 
   const updateHistoryMetrics = () => {
+    if (allowHistoryScroll) {
+      historyView.style.maxHeight = "";
+      return;
+    }
     const line = historyView.querySelector(".terminal-line");
     const lineHeight = line ? line.getBoundingClientRect().height : 22;
     const screenGap = parseFloat(window.getComputedStyle(screen).gap) || 0;
@@ -175,6 +208,7 @@
   };
 
   const trimHistoryView = () => {
+    if (allowHistoryScroll) return;
     while (historyView.children.length > dynamicMaxLines) {
       historyView.removeChild(historyView.firstElementChild);
     }
@@ -352,6 +386,7 @@
         window.scrollTo({ top: 0, left: 0, behavior: "instant" });
       }
       setPanelLoading(false);
+      scrollToLatest();
     } catch (err) {
       setPanelLoading(false);
       if (navigator.onLine === false) {
@@ -560,7 +595,11 @@
 
   const executeCommand = (rawValue, resolved) => {
     const value = rawValue.trim();
-    if (!value) return;
+    if (!value) {
+      appendInputLine("");
+      input.value = "";
+      return;
+    }
 
     const normalized = normalize(value);
     const command = resolved || resolveCommand(value) || resolveByCd(value);
@@ -790,6 +829,7 @@
     setTerminalMetrics();
     updateHistoryMetrics();
     setHeaderHeight();
+    scrollToLatest();
   });
 
   const prefetchPages = () => {

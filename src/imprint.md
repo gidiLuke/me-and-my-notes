@@ -1,31 +1,30 @@
 ---
-title: "Imprint / Impressum"
+title: "Imprint (Impressum)"
 layout: "base.njk"
 ---
 
-## Unternehmensangaben
+## Company Details (Unternehmensangaben)
 
-Heitech e.U.  
-Trins 38  
-6152 Trins  
-Österreich  
+Heitech e.U.
+Trins 38 
+6152 Trins
+Austria (Österreich)  
 
-## Kontakt
+## Contact (Kontakt)
 
-Tel. +43 664 8869 8834  
-E-Mail heidegger@heitech.co.at  
+Email (E-Mail): <a href="mailto:hi@lukasjh.com">hi@lukasjh.com</a>  
 
-## Firmenbuch
+## Commercial Register (Firmenbuch)
 
-Firmenbuchgericht: Landesgericht Innsbruck  
-FN: 464095v  
-USt.-ID: ATU73904037  
-Steuer-Nr.: 81 353/6117  
-Inhaber: Lukas Josef Heidegger  
+Commercial register court (Firmenbuchgericht): Landesgericht Innsbruck  
+Company number (FN): 464095v  
+VAT ID (USt.-ID): ATU73904037  
+Tax no. (Steuer-Nr.): 81 353/6117  
+Owner (Inhaber): Lukas Heidegger  
 
-## Verantwortlich für den Inhalt (§ 55 Abs. 2 MedienG)
+## Responsible for Content (Verantwortlich für den Inhalt nach § 55 Abs. 2 MedienG)
 
-Lukas Heidegger  
-Trins 38  
-6152 Trins  
-Austria
+Lukas Heidegger
+Trins 38
+6152 Trins
+Austria (Österreich)

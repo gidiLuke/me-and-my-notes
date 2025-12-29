@@ -9,6 +9,7 @@
     { "text": "cd /blog", "label": "Blog", "href": "/blog/", "topLevel": true },
     { "text": "cd /heitech", "label": "Heitech Digital", "href": "/heitech/", "topLevel": true },
     { "text": "cd /contact", "label": "Contact", "href": "/contact/", "topLevel": true },
+    { "text": "cd /security", "label": "Security", "href": "/security/", "topLevel": true },
     { "text": "cd /imprint", "label": "Imprint / Impressum", "href": "/imprint/", "topLevel": true },
     {
       "text": "cd /heitech/consulting",

@@ -1,0 +1,2 @@
+Contact: mailto:hi@lukasjh.com
+Encryption: https://lukasjh.com/security/pgp.asc

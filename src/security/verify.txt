@@ -1,0 +1,13 @@
+This statement confirms control over the domain:
+
+https://lukasjh.com
+
+
+The OpenPGP key with fingerprint:
+
+F2C1 8627 97E2 7C06 F2D5  1529 9405 83F2 422B 6836
+
+is the authoritative key for security-related communication
+and verification associated with this domain.
+
+No other keys are valid unless explicitly linked from this site.

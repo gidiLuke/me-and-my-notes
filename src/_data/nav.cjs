@@ -1,4 +1,5 @@
-const site = require("./site.json");
+const fs = require("fs");
+const path = require("path");
 
 const MAX_CHILDREN = 5;
 
@@ -14,6 +15,8 @@ const getLastSegment = (value) => {
 };
 
 module.exports = () => {
+  const sitePath = path.join(__dirname, "site.json");
+  const site = JSON.parse(fs.readFileSync(sitePath, "utf-8"));
   const commands = site.commands.map((command, index) => ({
     ...command,
     _index: index

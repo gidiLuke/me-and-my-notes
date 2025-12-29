@@ -214,6 +214,25 @@ body {
   color: var(--muted);
 }
 
+.mobile-nav-toggle {
+  display: none;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0;
+  cursor: pointer;
+}
+
+.mobile-nav-toggle:hover {
+  color: var(--accent);
+}
+
 .terminal-screen {
   background: rgba(8, 11, 15, 0.9);
   border-radius: 10px;
@@ -237,6 +256,7 @@ body {
   gap: 0.4rem;
   flex: 1 1 auto;
   overflow: auto;
+  min-height: 0;
 }
 
 .terminal-input-block {
@@ -523,6 +543,14 @@ body.nav-mode-command .command-list {
   }
 
   .nav-mode-toggle {
+    display: none;
+  }
+
+  .mobile-nav-toggle {
+    display: inline-flex;
+  }
+
+  body.nav-menu-hidden .command-list {
     display: none;
   }
 
