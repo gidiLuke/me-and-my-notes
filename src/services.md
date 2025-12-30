@@ -7,6 +7,17 @@ I’m in a committed and happy professional relationship.
 But engineering curiosity doesn’t believe in strict monogamy.
 
 If the cause is worth supporting or the technical problem is hard in the right way, I’m open to a side collaboration.
+This might be...
+
+- Architectural Work
+- DevOps
+- Developer Experience (DevEx)
+- Cloud Engineering
+- Reviews & Second Opinions
+- Fun Projects
+- Meaningful Projects
+
+
 
 My hourly rate is a moral slider: the nicer the mission, the nicer the price.
 
@@ -41,7 +52,6 @@ My hourly rate is a moral slider: the nicer the mission, the nicer the price.
     />
     <div class="offers-slider-scale">
       <span>0€</span>
-      <span>132€</span>
       <span>10 000€</span>
     </div>
     <div class="offers-slider-blocks">
@@ -114,8 +124,7 @@ My hourly rate is a moral slider: the nicer the mission, the nicer the price.
       outputFee.textContent = format(solidarityFee);
       slider.setAttribute("aria-valuetext", `${price} euros per hour`);
 
-      const region =
-        sliderValue <= 33 ? "left" : sliderValue >= 67 ? "right" : "center";
+      const region = price < 100 ? "left" : price <= 150 ? "center" : "right";
       blocks.forEach((block) => {
         block.classList.toggle("is-active", block.dataset.region === region);
       });

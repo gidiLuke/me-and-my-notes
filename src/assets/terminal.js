@@ -502,45 +502,7 @@
   };
 
   const listWhoAmI = () => {
-    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    const localTime = new Date().toLocaleString();
-    const prefersDark = window.matchMedia?.("(prefers-color-scheme: dark)").matches;
-    const prefersReducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
-    const connection = navigator.connection;
-    const referrer = document.referrer
-      ? new URL(document.referrer).hostname
-      : "direct";
-    const lines = [
-      describeLine("path", currentPath),
-      describeLine("local time", localTime),
-      describeLine("timezone", timezone),
-      describeLine("language", navigator.language),
-      describeLine("languages", navigator.languages?.join(", ")),
-      describeLine("platform", navigator.platform),
-      describeLine("vendor", navigator.vendor),
-      describeLine("user agent", navigator.userAgent),
-      describeLine("cookies enabled", navigator.cookieEnabled ? "yes" : "no"),
-      describeLine("do not track", navigator.doNotTrack ?? "unset"),
-      describeLine("device memory", navigator.deviceMemory ? `${navigator.deviceMemory} GB` : null),
-      describeLine("cpu threads", navigator.hardwareConcurrency),
-      describeLine(
-        "connection",
-        connection?.effectiveType
-          ? `${connection.effectiveType}${connection.downlink ? ` @ ${connection.downlink} Mbps` : ""}`
-          : null
-      ),
-      describeLine("color scheme", prefersDark ? "dark" : "light"),
-      describeLine("reduced motion", prefersReducedMotion ? "reduce" : "no-preference"),
-      describeLine(
-        "screen",
-        `${window.screen.width}x${window.screen.height} @${window.devicePixelRatio || 1}x`
-      ),
-      describeLine("viewport", `${window.innerWidth}x${window.innerHeight}`),
-      describeLine("online", navigator.onLine ? "yes" : "no"),
-      describeLine("referrer", referrer)
-    ].filter(Boolean);
-    appendOutputLine("whoami: client fingerprint");
-    lines.forEach((line) => appendOutputLine(line));
+    appendOutputLine("lukasheidegger");
   };
 
   const listAllCommands = () => {
