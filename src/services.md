@@ -36,7 +36,7 @@ My hourly rate is a moral slider: the nicer the mission, the nicer the price.
       </div>
     </div>
     <label class="offers-slider-label" for="pricing-slider">
-      Pick your price
+      Find your price
     </label>
     <input
       class="offers-slider-input"
