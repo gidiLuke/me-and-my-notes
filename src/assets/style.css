@@ -97,6 +97,25 @@ body {
   flex: 1 1 20rem;
 }
 
+.site-tagline.is-typing::after {
+  content: "▌";
+  display: inline-block;
+  margin-left: 0.2em;
+  color: var(--text);
+  animation: caret-blink 1.1s steps(2, start) infinite;
+}
+
+@keyframes caret-blink {
+  0%,
+  45% {
+    opacity: 1;
+  }
+  55%,
+  100% {
+    opacity: 0;
+  }
+}
+
 .site-tagline-strong {
   color: var(--text);
   font-weight: 600;

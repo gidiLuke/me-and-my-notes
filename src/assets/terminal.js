@@ -11,10 +11,68 @@
   const commandList = document.querySelector(".command-list");
   const page = document.querySelector(".page");
   const header = document.querySelector(".site-header");
+  const siteIdentifier = document.querySelector(".site-identifier");
   const modeToggle = document.getElementById("nav-mode-toggle");
   const menuToggle = document.getElementById("mobile-nav-toggle");
   if (!input || !suggestions || !screen || !historyView || !panel || !promptPath || !inputBlock) {
     return;
+  }
+
+  const runTaglineTyping = () => {
+    const taglineStrong = document.querySelector(".site-tagline-strong");
+    const taglineBody = document.querySelector(".site-tagline-body");
+    const tagline = document.querySelector(".site-tagline");
+    if (!taglineStrong || !taglineBody || !tagline) return;
+    const storageKey = "site-tagline-typed";
+    if (localStorage.getItem(storageKey) === "1") return;
+    const strongText = taglineStrong.textContent || "";
+    const bodyText = taglineBody.textContent || "";
+    if (!strongText && !bodyText) return;
+    localStorage.setItem(storageKey, "1");
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    taglineStrong.textContent = "";
+    taglineBody.textContent = "";
+    if (prefersReducedMotion) {
+      taglineStrong.textContent = strongText;
+      taglineBody.textContent = bodyText;
+      return;
+    }
+
+    tagline.classList.add("is-typing");
+    const typeText = (el, text, speed, done) => {
+      let index = 0;
+      const tick = () => {
+        const nextChar = text.charAt(index);
+        el.textContent += nextChar;
+        index += 1;
+        if (index < text.length) {
+          const pause = nextChar === "." ? 320 : nextChar === "," ? 160 : 0;
+          window.setTimeout(tick, speed + pause);
+        } else if (done) {
+          done();
+        }
+      };
+      if (!text) {
+        if (done) done();
+        return;
+      }
+      tick();
+    };
+
+    typeText(taglineStrong, strongText, 45, () => {
+      window.setTimeout(() => {
+        typeText(taglineBody, bodyText, 30, () => {
+          tagline.classList.remove("is-typing");
+        });
+      }, 650);
+    });
+  };
+
+  if (siteIdentifier) {
+    siteIdentifier.addEventListener("click", () => {
+      localStorage.removeItem("site-tagline-typed");
+    });
   }
 
   const setHeaderHeight = () => {
@@ -24,6 +82,7 @@
   };
 
   setHeaderHeight();
+  runTaglineTyping();
 
   const isMobile = window.matchMedia("(max-width: 1149px)").matches;
   if (isMobile) {

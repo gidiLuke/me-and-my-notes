@@ -5,7 +5,6 @@
   "footer": "(c) 2026 Lukas Heidegger",
   "commands": [
     { "text": "cd /", "label": "Home", "href": "/", "topLevel": true },
-    { "text": "cd /about", "label": "About", "href": "/about/", "topLevel": true },
     { "text": "cd /blog", "label": "Blog", "href": "/blog/", "topLevel": true },
     { "text": "cd /services", "label": "My services", "href": "/services/", "topLevel": true },
     { "text": "cd /contact", "label": "Contact", "href": "/contact/", "topLevel": true },
