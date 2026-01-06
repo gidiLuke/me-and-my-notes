@@ -13,7 +13,7 @@ Austria (Österreich)
 
 ## Contact (Kontakt)
 
-Email (E-Mail): <a href="mailto:hi@lukasjh.com">hi@lukasjh.com</a>  
+Email: <a href="mailto:hi@lukasjh.com">hi@lukasjh.com</a>  
 
 ## Commercial Register (Firmenbuch)
 
