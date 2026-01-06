@@ -1,6 +1,7 @@
 ---
 title: "Security"
 layout: "base.njk"
+description: "PGP key, fingerprint, and domain verification details."
 ---
 
 ### Keys

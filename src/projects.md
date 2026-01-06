@@ -1,6 +1,7 @@
 ---
 title: "Projects"
 layout: "base.njk"
+description: "Selected projects focused on clarity, durability, and pragmatic systems."
 ---
 
 Selected work with a bias toward clarity and durability.

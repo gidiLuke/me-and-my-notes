@@ -1,6 +1,7 @@
 ---
 title: "Contact"
 layout: "base.njk"
+description: "How to reach Lukas Heidegger via email, Signal, or Matrix."
 ---
 
 ## Reach me

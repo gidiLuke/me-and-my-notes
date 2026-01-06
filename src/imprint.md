@@ -1,6 +1,7 @@
 ---
 title: "Imprint (Impressum)"
 layout: "base.njk"
+description: "Legal imprint and company details for Heitech e.U."
 ---
 
 ## Company Details (Unternehmensangaben)

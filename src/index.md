@@ -1,6 +1,7 @@
 ---
 title: "Home"
 layout: "base.njk"
+description: "Personal site of Lukas Heidegger with work focus, projects, and notes."
 ---
 
 **Hello**, I’m Lukas and I like to build things. Preferably things that are meaningful.

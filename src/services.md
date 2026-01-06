@@ -1,6 +1,7 @@
 ---
 title: "My services"
 layout: "base.njk"
+description: "Freelance engineering services across architecture, DevOps, and developer experience."
 ---
 
 I’m in a committed and happy professional relationship.  

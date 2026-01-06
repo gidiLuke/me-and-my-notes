@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{{ title }} | {{ site.name }}</title>
     <meta name="description" content="{{ description or site.description }}" />
+    {% if site.url %}
+      <link rel="canonical" href="{{ site.url }}{{ page.url | url }}" />
+      <meta property="og:url" content="{{ site.url }}{{ page.url | url }}" />
+    {% endif %}
+    <meta property="og:title" content="{{ title }} | {{ site.name }}" />
+    <meta property="og:description" content="{{ description or site.description }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="{{ site.name }}" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="{{ title }} | {{ site.name }}" />
+    <meta name="twitter:description" content="{{ description or site.description }}" />
     <link rel="stylesheet" href="{{ '/assets/style.css' | url }}" />
     <link rel="icon" href="{{ '/assets/favicon.svg' | url }}" type="image/svg+xml" />
   </head>
