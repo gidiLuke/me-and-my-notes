@@ -708,6 +708,14 @@ body.nav-mode-command .command-list {
 }
 
 @media (max-width: 1149px) {
+  .page {
+    padding-top: 1.5rem;
+  }
+
+  .site-header {
+    position: sticky;
+  }
+
   .terminal {
     background: transparent;
     border: none;
