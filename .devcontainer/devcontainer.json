@@ -11,7 +11,8 @@
       "extensions": [
         "dbaeumer.vscode-eslint",
         "openai.chatgpt",
-        "prettier.prettier-vscode"
+        "prettier.prettier-vscode",
+        "mhutchie.git-graph"
       ]
     }
   },
