@@ -11,6 +11,7 @@
   const commandList = document.querySelector(".command-list");
   const page = document.querySelector(".page");
   const header = document.querySelector(".site-header");
+  const siteId = document.querySelector(".site-id");
   const siteIdentifier = document.querySelector(".site-identifier");
   const modeToggle = document.getElementById("nav-mode-toggle");
   const menuToggle = document.getElementById("mobile-nav-toggle");
@@ -79,15 +80,33 @@
     });
   };
 
+  const mobileQuery = window.matchMedia("(max-width: 1149px)");
+  let isMobile = mobileQuery.matches;
+  let subheaderHidden = false;
+  const setSubheaderHidden = (hidden) => {
+    if (hidden === subheaderHidden) return;
+    document.body.classList.toggle("is-subheader-hidden", hidden);
+    subheaderHidden = hidden;
+  };
+  const handleScroll = () => {
+    if (!isMobile || subheaderHidden) return;
+    if (window.scrollY > 24) setSubheaderHidden(true);
+  };
+  window.addEventListener("scroll", handleScroll, { passive: true });
+
   if (siteIdentifier) {
     siteIdentifier.addEventListener("click", () => {
       localStorage.removeItem("site-tagline-typed");
+      if (isMobile) setSubheaderHidden(false);
     });
   }
 
   const setHeaderHeight = () => {
     if (!header) return;
-    const height = header.getBoundingClientRect().height || 0;
+    const height =
+      isMobile && siteId
+        ? siteId.getBoundingClientRect().height || 0
+        : header.getBoundingClientRect().height || 0;
     document.documentElement.style.setProperty(
       "--header-height",
       `${height}px`,
@@ -97,26 +116,15 @@
   setHeaderHeight();
   runTaglineTyping();
 
-  const isMobile = window.matchMedia("(max-width: 1149px)").matches;
+  isMobile = mobileQuery.matches;
   if (isMobile) {
     document.body.classList.add("is-mobile", "nav-mode-classic");
   }
-  let isScrolled = null;
-  let scrollTicking = false;
-  const updateScrollState = () => {
-    if (!isMobile || scrollTicking) return;
-    scrollTicking = true;
-    window.requestAnimationFrame(() => {
-      const nextScrolled = window.scrollY > 24;
-      if (nextScrolled !== isScrolled) {
-        document.body.classList.toggle("is-scrolled", nextScrolled);
-        isScrolled = nextScrolled;
-      }
-      scrollTicking = false;
-    });
-  };
-  updateScrollState();
-  window.addEventListener("scroll", updateScrollState, { passive: true });
+  mobileQuery.addEventListener("change", (event) => {
+    isMobile = event.matches;
+    if (!isMobile) setSubheaderHidden(false);
+    setHeaderHeight();
+  });
 
   const applyMode = (mode, persist = true) => {
     const nextMode = mode === "command" ? "command" : "classic";

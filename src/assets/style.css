@@ -761,13 +761,13 @@ body.nav-mode-command .command-list {
     max-height: 8rem;
     overflow: hidden;
     transition:
-      opacity 200ms ease,
-      transform 200ms ease,
-      max-height 200ms ease,
-      margin-top 200ms ease;
+      opacity 600ms ease,
+      transform 600ms ease,
+      max-height 600ms ease,
+      margin-top 600ms ease;
   }
 
-  body.is-scrolled .site-subheader {
+  body.is-subheader-hidden .site-subheader {
     opacity: 0;
     transform: translateY(-4px);
     max-height: 0;
