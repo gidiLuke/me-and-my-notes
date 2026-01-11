@@ -86,13 +86,13 @@
             aria-relevant="additions"
           >
             <div class="terminal-history" id="terminal-history">
-              <div class="terminal-line terminal-line--system">
+              <div class="terminal-line terminal-line-system">
                 boot: ready | try "cd /projects" or "ls".
               </div>
             </div>
             <div class="terminal-input-block" id="terminal-input-block">
               <form class="terminal-form" id="terminal-form" autocomplete="off">
-                <div class="terminal-input-row terminal-input-row--active">
+                <div class="terminal-input-row terminal-input-row-active">
                   <span class="prompt-path" id="prompt-path">/</span>
                   <span class="prompt">$</span>
                   <input
@@ -164,7 +164,7 @@
                       {% for child in entry.childrenDisplay %}
                         {% set childActive = page.url == child.href %}
                         <li
-                          class="tree-item tree-item--child {% if childActive %}is-active{% endif %}"
+                          class="tree-item tree-item-child {% if childActive %}is-active{% endif %}"
                           data-command="{{ child.text }}"
                           data-label="{{ child.label }}"
                           data-href="{{ child.href }}"
@@ -186,7 +186,7 @@
                         </li>
                       {% endfor %}
                       {% if entry.hasMore %}
-                        <li class="tree-item tree-item--ellipsis">
+                        <li class="tree-item tree-item-ellipsis">
                           <span class="tree-branch">├──</span>
                           <span class="tree-ellipsis">...</span>
                         </li>

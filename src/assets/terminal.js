@@ -344,7 +344,7 @@
 
   const renderOutputLine = (value, type = "output") => {
     const line = document.createElement("div");
-    line.className = `terminal-line terminal-line--${type}`;
+    line.className = `terminal-line terminal-line-${type}`;
     line.textContent = value;
     historyView.appendChild(line);
     updateHistoryMetrics();

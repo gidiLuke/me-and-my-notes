@@ -13,7 +13,8 @@
         "openai.chatgpt",
         "prettier.prettier-vscode",
         "mhutchie.git-graph",
-        "fnando.linter"
+        "fnando.linter",
+        "stylelint.vscode-stylelint"
       ]
     }
   },

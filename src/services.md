@@ -55,7 +55,7 @@ My hourly rate is a moral slider: the nicer the mission, the nicer the price.
       <span>10 000€</span>
     </div>
     <div class="offers-slider-blocks">
-      <div class="offers-block offers-block--left" data-region="left">
+      <div class="offers-block offers-block-left" data-region="left">
         <div class="offers-block-title">Good causes</div>
         <div class="offers-block-body">
           Mutual-aid infrastructure<br />
@@ -63,7 +63,7 @@ My hourly rate is a moral slider: the nicer the mission, the nicer the price.
           Public-interest tech
         </div>
       </div>
-      <div class="offers-block offers-block--center" data-region="center">
+      <div class="offers-block offers-block-center" data-region="center">
         <div class="offers-block-title">Neutral zone</div>
         <div class="offers-block-body">
           Standard consulting<br />
@@ -71,7 +71,7 @@ My hourly rate is a moral slider: the nicer the mission, the nicer the price.
           No villains, no heroes
         </div>
       </div>
-      <div class="offers-block offers-block--right" data-region="right">
+      <div class="offers-block offers-block-right" data-region="right">
         <div class="offers-block-title">No thanks</div>
         <div class="offers-block-body">
           Fossil fuel growth<br />

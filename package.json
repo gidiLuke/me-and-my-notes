@@ -11,6 +11,8 @@
     "format:check": "prettier --check .",
     "lint:js": "eslint .",
     "lint:js:fix": "eslint . --fix",
+    "lint:css": "stylelint \"**/*.css\"",
+    "lint:css:fix": "stylelint \"**/*.css\" --fix",
     "prepare": "husky"
   },
   "devDependencies": {
@@ -23,6 +25,8 @@
     "lint-staged": "^16.2.7",
     "markdownlint-cli2": "^0.20.0",
     "prettier": "^3.7.4",
-    "prettier-plugin-jinja-template": "^2.1.0"
+    "prettier-plugin-jinja-template": "^2.1.0",
+    "stylelint": "^16.26.1",
+    "stylelint-config-standard": "^39.0.1"
   }
 }

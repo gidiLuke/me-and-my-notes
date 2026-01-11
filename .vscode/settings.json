@@ -4,5 +4,8 @@
   "files.associations": {
     "*.njk": "html"
   },
-  "editor.rulers": [80]
+  "editor.rulers": [80],
+  "css.validate": false, //stylelint takes care of this
+  "less.validate": false, //stylelint takes care of this
+  "scss.validate": false //stylelint takes care of this
 }
