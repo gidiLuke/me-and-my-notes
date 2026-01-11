@@ -236,7 +236,7 @@
       const raw = sessionStorage.getItem(storageKey);
       if (!raw) return null;
       return JSON.parse(raw);
-    } catch (err) {
+    } catch {
       return null;
     }
   };
@@ -244,7 +244,7 @@
   const saveSession = (session) => {
     try {
       sessionStorage.setItem(storageKey, JSON.stringify(session));
-    } catch (err) {
+    } catch {
       // ignore storage failures (private mode, disabled storage)
     }
   };
@@ -478,7 +478,7 @@
       }
       setPanelLoading(false);
       scrollToLatest();
-    } catch (err) {
+    } catch {
       setPanelLoading(false);
       if (navigator.onLine === false) {
         appendOutputLine(
@@ -594,11 +594,6 @@
     const children = listSubdirectories(currentPath);
     if (children.length === 0) return;
     appendOutputLine(children.join("  "));
-  };
-
-  const describeLine = (label, value) => {
-    if (value === undefined || value === null || value === "") return null;
-    return `${label}: ${value}`;
   };
 
   const listWhoAmI = () => {
