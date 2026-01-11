@@ -1,0 +1,5 @@
+node_modules/
+_site/
+temp/
+.DS_Store
+src/security/*.asc

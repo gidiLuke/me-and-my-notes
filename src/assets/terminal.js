@@ -14,7 +14,15 @@
   const siteIdentifier = document.querySelector(".site-identifier");
   const modeToggle = document.getElementById("nav-mode-toggle");
   const menuToggle = document.getElementById("mobile-nav-toggle");
-  if (!input || !suggestions || !screen || !historyView || !panel || !promptPath || !inputBlock) {
+  if (
+    !input ||
+    !suggestions ||
+    !screen ||
+    !historyView ||
+    !panel ||
+    !promptPath ||
+    !inputBlock
+  ) {
     return;
   }
 
@@ -30,7 +38,9 @@
     if (!strongText && !bodyText) return;
     localStorage.setItem(storageKey, "1");
 
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
     taglineStrong.textContent = "";
     taglineBody.textContent = "";
     if (prefersReducedMotion) {
@@ -78,7 +88,10 @@
   const setHeaderHeight = () => {
     if (!header) return;
     const height = header.getBoundingClientRect().height || 0;
-    document.documentElement.style.setProperty("--header-height", `${height}px`);
+    document.documentElement.style.setProperty(
+      "--header-height",
+      `${height}px`,
+    );
   };
 
   setHeaderHeight();
@@ -95,14 +108,20 @@
     document.body.classList.toggle("nav-mode-command", nextMode === "command");
     if (modeToggle) {
       modeToggle.querySelectorAll("[data-mode]").forEach((btn) => {
-        btn.setAttribute("aria-pressed", btn.dataset.mode === nextMode ? "true" : "false");
+        btn.setAttribute(
+          "aria-pressed",
+          btn.dataset.mode === nextMode ? "true" : "false",
+        );
       });
     }
     if (persist) {
       localStorage.setItem("nav-mode", nextMode);
     }
     input.disabled = nextMode !== "command";
-    input.setAttribute("aria-disabled", nextMode !== "command" ? "true" : "false");
+    input.setAttribute(
+      "aria-disabled",
+      nextMode !== "command" ? "true" : "false",
+    );
   };
 
   const storedMode = localStorage.getItem("nav-mode");
@@ -138,7 +157,7 @@
 
   const disableEleventyReload = () => {
     const reloadClient = Array.from(document.scripts).some((script) =>
-      script.src?.includes("/.11ty/reload-client.js")
+      script.src?.includes("/.11ty/reload-client.js"),
     );
     if (!reloadClient) return;
     const originalReload = window.location.reload.bind(window.location);
@@ -152,13 +171,17 @@
 
   disableEleventyReload();
 
-  const explorerRows = Array.from(document.querySelectorAll(".command-list .tree-item"));
+  const explorerRows = Array.from(
+    document.querySelectorAll(".command-list .tree-item"),
+  );
   const commandRows = Array.from(document.querySelectorAll("#command-data li"));
   const sourceRows = commandRows.length > 0 ? commandRows : explorerRows;
   const commands = sourceRows
     .map((row) => {
       const link = row.querySelector("a");
-      const text = row.dataset.command || row.querySelector(".command")?.textContent?.trim();
+      const text =
+        row.dataset.command ||
+        row.querySelector(".command")?.textContent?.trim();
       const label = row.dataset.label || link?.textContent?.trim() || text;
       const href = row.dataset.href || link?.getAttribute("href");
       const url = row.dataset.url || link?.getAttribute("href") || href;
@@ -167,7 +190,7 @@
         text,
         label,
         href,
-        url
+        url,
       };
     })
     .filter(Boolean);
@@ -175,7 +198,7 @@
     { text: "ls", label: "ls" },
     { text: "pwd", label: "pwd" },
     { text: "whoami", label: "whoami" },
-    { text: "help", label: "help" }
+    { text: "help", label: "help" },
   ];
   const suggestionCommands = [...commands, ...extraCommands];
 
@@ -228,7 +251,7 @@
 
   const session = loadSession() || {
     history: [],
-    transcript: []
+    transcript: [],
   };
   if (!session.fallbackPath) {
     session.fallbackPath = normalizePath(window.location.pathname);
@@ -284,11 +307,17 @@
     const offsetTop = paddingTop + headerOffset;
     const maxHeight = Math.max(
       240,
-      window.innerHeight - offsetTop - paddingBottom
+      window.innerHeight - offsetTop - paddingBottom,
     );
 
-    document.documentElement.style.setProperty("--terminal-offset-top", `${offsetTop}px`);
-    document.documentElement.style.setProperty("--terminal-max-height", `${maxHeight}px`);
+    document.documentElement.style.setProperty(
+      "--terminal-offset-top",
+      `${offsetTop}px`,
+    );
+    document.documentElement.style.setProperty(
+      "--terminal-max-height",
+      `${maxHeight}px`,
+    );
   };
 
   const renderInputLine = (value, path = currentPath) => {
@@ -359,11 +388,13 @@
     if (nextTitle) document.title = nextTitle.textContent || document.title;
 
     const nextDescription = nextDoc.querySelector('meta[name="description"]');
-    const currentDescription = document.querySelector('meta[name="description"]');
+    const currentDescription = document.querySelector(
+      'meta[name="description"]',
+    );
     if (nextDescription && currentDescription) {
       currentDescription.setAttribute(
         "content",
-        nextDescription.getAttribute("content") || ""
+        nextDescription.getAttribute("content") || "",
       );
     }
   };
@@ -380,7 +411,8 @@
     currentPath = target;
     promptPath.textContent = currentPath;
     explorerRows.forEach((row) => {
-      const href = row.dataset.href || row.querySelector("a")?.getAttribute("href");
+      const href =
+        row.dataset.href || row.querySelector("a")?.getAttribute("href");
       if (!href) return;
       const normalizedHref = normalizePath(href);
       const isRoot = normalizedHref === "/";
@@ -407,7 +439,7 @@
     }
 
     const response = await fetch(targetUrl.pathname + targetUrl.search, {
-      headers: { "X-Requested-With": "terminal" }
+      headers: { "X-Requested-With": "terminal" },
     });
     if (!response.ok) throw new Error("failed");
 
@@ -449,7 +481,10 @@
     } catch (err) {
       setPanelLoading(false);
       if (navigator.onLine === false) {
-        appendOutputLine("navigation failed (offline?). staying on current page.", "error");
+        appendOutputLine(
+          "navigation failed (offline?). staying on current page.",
+          "error",
+        );
         return;
       }
       window.location.href = href;
@@ -520,8 +555,12 @@
       commands.find((command) => normalize(command.label) === needle);
     if (byText) return byText;
 
-    const pathNeedle = normalizePath(needle.startsWith("/") ? needle : `/${needle}`);
-    return commands.find((command) => normalizePath(command.href) === pathNeedle);
+    const pathNeedle = normalizePath(
+      needle.startsWith("/") ? needle : `/${needle}`,
+    );
+    return commands.find(
+      (command) => normalizePath(command.href) === pathNeedle,
+    );
   };
 
   const applyInput = (value) => {
@@ -538,7 +577,9 @@
     commands.forEach((command) => {
       const segments = splitPath(command.href);
       if (segments.length !== parentSegments.length + 1) return;
-      const matchesParent = parentSegments.every((segment, idx) => segments[idx] === segment);
+      const matchesParent = parentSegments.every(
+        (segment, idx) => segments[idx] === segment,
+      );
       if (!matchesParent) return;
       const name = segments[segments.length - 1];
       if (seen.has(name)) return;
@@ -605,13 +646,20 @@
     if (isAbsolute) {
       return (
         commands.find((command) => normalize(command.label) === target) ||
-        commands.find((command) => normalize(command.text.replace(/^cd\s+/, "")) === target) ||
-        commands.find((command) => normalize(command.href?.replace(/^\/+|\/+$/g, "")) === target) ||
+        commands.find(
+          (command) => normalize(command.text.replace(/^cd\s+/, "")) === target,
+        ) ||
+        commands.find(
+          (command) =>
+            normalize(command.href?.replace(/^\/+|\/+$/g, "")) === target,
+        ) ||
         commands.find((command) => normalizePath(command.href) === finalPath)
       );
     }
 
-    return commands.find((command) => normalizePath(command.href) === finalPath);
+    return commands.find(
+      (command) => normalizePath(command.href) === finalPath,
+    );
   };
 
   const executeCommand = (rawValue, resolved) => {
@@ -666,11 +714,11 @@
 
     const allCommandTexts = [
       ...commands.map((item) => item.text),
-      ...extraCommands.map((item) => item.text)
+      ...extraCommands.map((item) => item.text),
     ];
     appendOutputLine(
       `command not found. try: ${allCommandTexts.join(", ")}`,
-      "error"
+      "error",
     );
     input.value = "";
     input.classList.add("error");
@@ -734,7 +782,8 @@
     if (event.key === "ArrowUp") {
       event.preventDefault();
       if (items.length > 0) {
-        const nextIndex = activeIndex - 1 < 0 ? items.length - 1 : activeIndex - 1;
+        const nextIndex =
+          activeIndex - 1 < 0 ? items.length - 1 : activeIndex - 1;
         setActive(nextIndex);
         return true;
       }
@@ -801,7 +850,10 @@
       return;
     }
 
-    if ((event.key === "ArrowUp" || event.key === "ArrowDown") && document.activeElement !== input) {
+    if (
+      (event.key === "ArrowUp" || event.key === "ArrowDown") &&
+      document.activeElement !== input
+    ) {
       focusInput();
       handleArrowNavigation(event);
       return;
@@ -832,7 +884,7 @@
     if (!href || !url) return;
     event.preventDefault();
     const command = commands.find(
-      (item) => normalizePath(item.href) === normalizePath(href)
+      (item) => normalizePath(item.href) === normalizePath(href),
     );
     if (command) {
       executeCommand(command.text, command);

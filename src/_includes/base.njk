@@ -10,21 +10,33 @@
       <meta property="og:url" content="{{ site.url }}{{ page.url | url }}" />
     {% endif %}
     <meta property="og:title" content="{{ title }} | {{ site.name }}" />
-    <meta property="og:description" content="{{ description or site.description }}" />
+    <meta
+      property="og:description"
+      content="{{ description or site.description }}"
+    />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="{{ site.name }}" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="{{ title }} | {{ site.name }}" />
-    <meta name="twitter:description" content="{{ description or site.description }}" />
+    <meta
+      name="twitter:description"
+      content="{{ description or site.description }}"
+    />
     <link rel="stylesheet" href="{{ '/assets/style.css' | url }}" />
-    <link rel="icon" href="{{ '/assets/favicon.svg' | url }}" type="image/svg+xml" />
+    <link
+      rel="icon"
+      href="{{ '/assets/favicon.svg' | url }}"
+      type="image/svg+xml"
+    />
   </head>
   <body class="nav-mode-classic" data-path-prefix="{{ pathPrefix }}">
     <div class="page">
       <header class="site-header">
         <div class="site-id">
           <span class="prompt">$</span>
-          <a class="site-identifier" href="{{ '/' | url }}">lukasheidegger@theinternet</a>
+          <a class="site-identifier" href="{{ '/' | url }}"
+            >lukasheidegger@theinternet</a
+          >
           <span class="site-tagline">
             <span class="site-tagline-strong">Hi and welcome.</span>
             <span class="site-tagline-body">{{ site.tagline }}</span>
@@ -40,25 +52,30 @@
 
         <section class="terminal" aria-label="Command line navigation">
           <div class="terminal-header">
-            <div class="nav-mode-toggle" id="nav-mode-toggle" role="group" aria-label="Navigation mode">
-            <span class="nav-mode-label">Navigation:</span>
-            <button
-              class="nav-mode-option"
-              type="button"
-              data-mode="classic"
-              aria-pressed="true"
+            <div
+              class="nav-mode-toggle"
+              id="nav-mode-toggle"
+              role="group"
+              aria-label="Navigation mode"
             >
-              Classic
-            </button>
-            <span class="nav-mode-separator">|</span>
-            <button
-              class="nav-mode-option"
-              type="button"
-              data-mode="command"
-              aria-pressed="false"
-            >
-              Command Line
-            </button>
+              <span class="nav-mode-label">Navigation:</span>
+              <button
+                class="nav-mode-option"
+                type="button"
+                data-mode="classic"
+                aria-pressed="true"
+              >
+                Classic
+              </button>
+              <span class="nav-mode-separator">|</span>
+              <button
+                class="nav-mode-option"
+                type="button"
+                data-mode="command"
+                aria-pressed="false"
+              >
+                Command Line
+              </button>
             </div>
           </div>
           <div
@@ -104,10 +121,16 @@
           </div>
           <noscript>
             <div class="noscript">
-              JavaScript is disabled. Use the links below to navigate between pages.
+              JavaScript is disabled. Use the links below to navigate between
+              pages.
             </div>
           </noscript>
-          <button class="mobile-nav-toggle" id="mobile-nav-toggle" type="button" aria-expanded="true">
+          <button
+            class="mobile-nav-toggle"
+            id="mobile-nav-toggle"
+            type="button"
+            aria-expanded="true"
+          >
             Hide Menu ▲
           </button>
           <div class="command-list">
@@ -121,7 +144,9 @@
                   data-href="{{ entry.href }}"
                   data-url="{{ entry.href | url }}"
                 >
-                  <span class="tree-branch">{% if loop.last %}└──{% else %}├──{% endif %}</span>
+                  <span class="tree-branch"
+                    >{% if loop.last %}└──{% else %}├──{% endif %}</span
+                  >
                   <a
                     class="tree-link"
                     href="{{ entry.href | url }}"
@@ -129,7 +154,9 @@
                   >
                     {{ entry.label | lower }}
                   </a>
-                  <a class="tree-path" href="{{ entry.href | url }}">{{ entry.href }}</a>
+                  <a class="tree-path" href="{{ entry.href | url }}"
+                    >{{ entry.href }}</a
+                  >
                 </li>
                 {% if entry.childrenDisplay.length %}
                   <li class="tree-children-row">
@@ -143,7 +170,9 @@
                           data-href="{{ child.href }}"
                           data-url="{{ child.href | url }}"
                         >
-                          <span class="tree-branch">{% if loop.last and not entry.hasMore %}└──{% else %}├──{% endif %}</span>
+                          <span class="tree-branch"
+                            >{% if loop.last and not entry.hasMore %}└──{% else %}├──{% endif %}</span
+                          >
                           <a
                             class="tree-link"
                             href="{{ child.href | url }}"
@@ -151,7 +180,9 @@
                           >
                             {{ child.shortLabel | lower }}
                           </a>
-                          <a class="tree-path" href="{{ child.href | url }}">{{ child.href }}</a>
+                          <a class="tree-path" href="{{ child.href | url }}"
+                            >{{ child.href }}</a
+                          >
                         </li>
                       {% endfor %}
                       {% if entry.hasMore %}
@@ -178,7 +209,6 @@
           </ul>
         </section>
       </main>
-
     </div>
 
     <script src="{{ '/assets/terminal.js' | url }}" defer></script>

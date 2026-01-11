@@ -9,7 +9,9 @@
         "editor.formatOnSave": false
       },
       "extensions": [
-        "dbaeumer.vscode-eslint"
+        "dbaeumer.vscode-eslint",
+        "openai.chatgpt",
+        "prettier.prettier-vscode"
       ]
     }
   },

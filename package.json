@@ -6,9 +6,16 @@
   "scripts": {
     "build": "eleventy",
     "serve": "eleventy --serve",
-    "dev": "eleventy --serve"
+    "dev": "eleventy --serve",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepare": "husky"
   },
   "devDependencies": {
-    "@11ty/eleventy": "^2.0.1"
+    "@11ty/eleventy": "^2.0.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
+    "prettier": "^3.7.4",
+    "prettier-plugin-jinja-template": "^2.1.0"
   }
 }

@@ -9,7 +9,9 @@
   --danger: #f38ba8;
   --shadow: rgba(15, 19, 24, 0.6);
   --radius: 12px;
-  --mono: "JetBrains Mono", "Fira Code", "SFMono-Regular", "Menlo", "Consolas", monospace;
+  --mono:
+    "JetBrains Mono", "Fira Code", "SFMono-Regular", "Menlo", "Consolas",
+    monospace;
   --sans: "Space Grotesk", "Avenir Next", "Segoe UI", sans-serif;
 }
 
@@ -24,7 +26,8 @@ img {
 
 body {
   margin: 0;
-  background: radial-gradient(1200px 800px at 20% -20%, #203040 0%, transparent 60%),
+  background:
+    radial-gradient(1200px 800px at 20% -20%, #203040 0%, transparent 60%),
     radial-gradient(800px 600px at 90% 20%, #1c2a33 0%, transparent 55%),
     var(--bg);
   color: var(--text);
@@ -37,7 +40,8 @@ body {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  padding: calc(var(--header-height, 5rem) + 1.5rem) clamp(1.25rem, 4vw, 4rem) 3rem;
+  padding: calc(var(--header-height, 5rem) + 1.5rem) clamp(1.25rem, 4vw, 4rem)
+    3rem;
 }
 
 .site-header {
@@ -570,7 +574,10 @@ body.nav-mode-command .command-list {
   border: 1px solid rgba(154, 164, 178, 0.2);
   background: rgba(8, 11, 15, 0.35);
   color: var(--muted);
-  transition: border-color 150ms ease, background 150ms ease, color 150ms ease;
+  transition:
+    border-color 150ms ease,
+    background 150ms ease,
+    color 150ms ease;
 }
 
 .offers-block--left {

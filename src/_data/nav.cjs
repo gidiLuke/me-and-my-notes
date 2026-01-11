@@ -19,7 +19,7 @@ module.exports = () => {
   const site = JSON.parse(fs.readFileSync(sitePath, "utf-8"));
   const commands = site.commands.map((command, index) => ({
     ...command,
-    _index: index
+    _index: index,
   }));
 
   const topLevel = commands
@@ -30,10 +30,12 @@ module.exports = () => {
       shortLabel: command.label,
       children: [],
       childrenDisplay: [],
-      hasMore: false
+      hasMore: false,
     }));
 
-  const byHref = new Map(topLevel.map((command) => [normalizePath(command.href), command]));
+  const byHref = new Map(
+    topLevel.map((command) => [normalizePath(command.href), command]),
+  );
 
   commands.forEach((command) => {
     if (command.topLevel) return;
@@ -47,7 +49,7 @@ module.exports = () => {
 
     parent.children.push({
       ...command,
-      shortLabel: getLastSegment(command.href)
+      shortLabel: getLastSegment(command.href),
     });
   });
 
@@ -57,6 +59,6 @@ module.exports = () => {
   });
 
   return {
-    tree: topLevel
+    tree: topLevel,
   };
 };

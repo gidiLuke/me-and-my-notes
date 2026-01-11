@@ -18,10 +18,7 @@ This might be...
 - Fun Projects
 - Meaningful Projects
 
-
-
 My hourly rate is a moral slider: the nicer the mission, the nicer the price.
-
 
 <div class="offers-pricing">
   <div class="offers-slider">

@@ -8,10 +8,10 @@ description: "Personal site of Lukas Heidegger with work focus, projects, and no
 
 Most of what I build lives at the intersection of software, systems, and the real world. I have strong desire to understand how things work, especially when they don’t.
 
-If I had to describe myself in one word, it would be *curious*.
-Curiosity is what pulls me into problems and keeps me there until they are properly understood. I enjoy complexity but value clarity and structure. 
+If I had to describe myself in one word, it would be _curious_.
+Curiosity is what pulls me into problems and keeps me there until they are properly understood. I enjoy complexity but value clarity and structure.
 
-My current focus is building data-centric and intelligent applications for Europe’s energy networks at **E.ON Digital Technology**. 
+My current focus is building data-centric and intelligent applications for Europe’s energy networks at **E.ON Digital Technology**.
 Technologies I work with regularly include:
 
 - **Cloud & Infrastructure:** Azure, Terraform, OpenTofu, Docker
@@ -23,7 +23,6 @@ Technologies I work with regularly include:
 Tech I worked with in the past: Java, C/C++, C#, embedded hardware, electronics (PCB design and prototyping, soldering, diagnostics, ...), physical prototyping (3D printing, laser-cutting, waterjet-cutting, metal and wood works, welding, ...)
 
 On my todo list: Rust
-
 
 ## About this website
 
