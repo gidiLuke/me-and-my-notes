@@ -3,5 +3,6 @@
   "editor.formatOnSave": true,
   "files.associations": {
     "*.njk": "html"
-  }
+  },
+  "editor.rulers": [80]
 }

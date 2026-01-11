@@ -1,14 +1,16 @@
 ---
 title: "My services"
 layout: "base.njk"
-description: "Freelance engineering services across architecture, DevOps, and developer experience."
+description:
+  "Freelance engineering services across architecture, DevOps, and developer
+  experience."
 ---
 
 I’m in a committed and happy professional relationship.  
 But engineering curiosity doesn’t believe in strict monogamy.
 
-If the cause is worth supporting or the technical problem is hard in the right way, I’m open to a side collaboration.
-This might be...
+If the cause is worth supporting or the technical problem is hard in the right
+way, I’m open to a side collaboration. This might be...
 
 - Architectural Work
 - DevOps

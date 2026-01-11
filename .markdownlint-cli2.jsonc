@@ -1,6 +1,9 @@
 {
   "config": {
-    "default": true
+    "default": true,
+    "MD013": false, // e.g. inline HTML can extend the line length limi
+    "MD033": false,
+    "MD001": false
   },
   "globs": [
     "**/*.md"
