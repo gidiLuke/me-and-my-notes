@@ -101,6 +101,22 @@
   if (isMobile) {
     document.body.classList.add("is-mobile", "nav-mode-classic");
   }
+  let isScrolled = null;
+  let scrollTicking = false;
+  const updateScrollState = () => {
+    if (!isMobile || scrollTicking) return;
+    scrollTicking = true;
+    window.requestAnimationFrame(() => {
+      const nextScrolled = window.scrollY > 24;
+      if (nextScrolled !== isScrolled) {
+        document.body.classList.toggle("is-scrolled", nextScrolled);
+        isScrolled = nextScrolled;
+      }
+      scrollTicking = false;
+    });
+  };
+  updateScrollState();
+  window.addEventListener("scroll", updateScrollState, { passive: true });
 
   const applyMode = (mode, persist = true) => {
     const nextMode = mode === "command" ? "command" : "classic";
