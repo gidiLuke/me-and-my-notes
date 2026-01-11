@@ -12,7 +12,8 @@
         "dbaeumer.vscode-eslint",
         "openai.chatgpt",
         "prettier.prettier-vscode",
-        "mhutchie.git-graph"
+        "mhutchie.git-graph",
+        "fnando.linter"
       ]
     }
   },

@@ -7,12 +7,6 @@ const config = {
         parser: "jinja-template",
       },
     },
-    {
-      files: ["*.html"],
-      options: {
-        parser: "jinja-template",
-      },
-    },
   ],
 };
 
